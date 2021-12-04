@@ -1,0 +1,148 @@
+html, body {
+    width: 500px;
+    margin: 0;
+    padding: 0 10px 0 0;
+    overflow-x: hidden;
+    background-image: url('img/cloud.png');
+    background-repeat: fill;
+}
+
+h1 {
+    margin: 0;
+    color: black;
+}
+
+hr {
+    border: 1px solid #999999;
+    height: 0;
+    padding: 0;
+    line-height: 0;
+}
+
+.header-links {
+    float: right;
+    margin-top: -20px;
+}
+
+.header-links a {
+    color: #999999;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.header-links a:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}
+
+.body {
+    padding: 6px;
+}
+
+.button {
+    padding: 6px 8px;
+    border-radius: 3px;
+    border: 0px solid #999999;
+    background-color: black;
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover{
+    background-color: white;
+    color: black;
+}
+.button:active{
+    background-color: grey;
+}
+
+.button-fullwidth {
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.fullwidth {
+    width: 100%;
+    display: block;
+}
+
+#stats .leftColumn {
+    width: 50%;
+    float: left;
+}
+
+#stats .rightColumn {
+    width: 50%;
+    float: left;
+}
+
+.column33 {
+    width: 33%;
+    float: left;
+}
+
+.column50 {
+    width: 50%;
+    float: left;
+}
+
+.clear {
+    clear: both;
+}
+
+/* #startButton, #stopButton {
+    background: url('img/run.svg') no-repeat 4px 5px;
+    background-size: 20px;
+    padding-left: 26px;
+} */
+
+#resetButton {
+    background: url('img/reload.svg') no-repeat 4px 5px;
+    background-size: 20px;
+    padding-left: 26px;
+}
+
+#statsListItems {
+    overflow: hidden;
+    font-size: 12px;
+}
+
+ul#statsListItems {
+    margin: 0;
+    padding: 10px;
+}
+
+#statsListTitle {
+    color: #999999;
+}
+
+#equivalence img {
+    margin-top: -8px;
+    width: 50px;
+    float: left;
+}
+
+#equivalence img.icon-car {
+    width: 44px;
+    margin-right: 6px;
+}
+
+#equivalence .block {
+    font-size: 16px;
+}
+
+#equivalence span.unit {
+    font-size: 10px;
+    display: block;
+}
+
+.selectRegionHelp {
+    margin-top: 0px;
+}
