@@ -1,3 +1,5 @@
+// Logic of plugIn UI
+// Set Global Variables ----------------------------------------------
 const defaultLocation = 'regionOther';
 let userLocation = defaultLocation;
 
@@ -26,31 +28,42 @@ parseStats = () => {
 }
 
 getStats = () => {
+  // get stats from localStorage
   const stats = parseStats();
   let total = 0;
+  // const means not mutable via redecleration nor assigning
   const sortedStats = [];
 
+  // stats is a dictionary
+    // origin is the key
+    // stats[origin] is the value in bytes
   for (let origin in stats) {
     total += stats[origin];
     sortedStats.push({ 'origin': origin, 'byte': stats[origin] });
   }
 
+  // sorting sortedStats ;)
   sortedStats.sort(function(a, b) {
     return a.byte < b.byte ? 1 : a.byte > b.byte ? -1 : 0
   });
 
+  // top five data users
   const highestStats = sortedStats.slice(0, 4);
+  // sum of top five data users
   let subtotal = 0;
+  // sum up top five data users
   for (let index in highestStats) {
     subtotal += highestStats[index].byte;
   }
 
   if (total > 0) {
+    // remaining is the leftover (total - top five data users)
     const remaining = total - subtotal;
     if (remaining > 0) {
+      // add remaining to highestStats as statsOther
       highestStats.push({'origin': translate('statsOthers'), 'byte': remaining});
     }
-
+    // add percent attribute to every element in highestStats
     highestStats.forEach(function (item) {
       item.percent = Math.round(100 * item.byte / total)
     });
@@ -62,33 +75,50 @@ getStats = () => {
   }
 }
 
+// convert byte to megaByte
 toMegaByte = (value) => (Math.round(value/1024/1024));
 
 showStats = () => {
+  //get stats from localStorage receiving total and highestStats
   const stats = getStats();
 
+  // return if stats.total is zero
   if (stats.total === 0) {
     return;
   }
 
+  //activate statsElement
+  // statsElement is reference to html element that shows our stats
   show(statsElement);
+  //domains of users (websites)
   const labels = [];
+  // data usage in percent
   const series = [];
 
+  // get reference to html element that lists top five data users
   const statsListItemsElement = document.getElementById('statsListItems');
+  // empty list in html file (is there a better option?)
   while (statsListItemsElement.firstChild) {
     statsListItemsElement.removeChild(statsListItemsElement.firstChild);
   }
 
+  //loop through highestStats
   for (let index in stats.highestStats) {
+    // skip if smaller than 1%
     if (stats.highestStats[index].percent < 1) {
       continue;
     }
 
+    // add website domain to labels
     labels.push(stats.highestStats[index].origin);
+    // add values in percentage to series
     series.push(stats.highestStats[index].percent);
+
+    // create text with usage in percent and domain: 10% cloud2cloud.com
     const text = document.createTextNode(`${stats.highestStats[index].percent}% ${stats.highestStats[index].origin}`);
+    // create bullet point with LI as tagName
     const li = document.createElement("LI");
+    // add text to bullet point (<ul>) our text: 10% cloud2cloud.com
     li.appendChild(text);
     statsListItemsElement.appendChild(li);
   }
@@ -169,20 +199,25 @@ reset = () => {
   hide(resetButton);
 }
 
+
 init = () => {
+  //get selected region
   const selectedRegion = localStorage.getItem('selectedRegion');
 
+  //if region selected, set userLocation
   if (null !== selectedRegion) {
     userLocation = selectedRegion;
     selectRegion.value = selectedRegion;
   }
 
+  // check if stats exist, if not hide resetButton, if yes show resetButton
   if (null === localStorage.getItem('stats')) {
     hide(resetButton);
   } else {
     show(resetButton);
   }
 
+  // show existing statistics
   showStats();
 
   if (null === localStorage.getItem('analysisStarted')) {
@@ -222,7 +257,10 @@ show = element => element.classList.remove('hidden');
 
 const analysisInProgressMessage = document.getElementById('analysisInProgressMessage');
 
+// reference to html element that shows our stats
 const statsElement = document.getElementById('stats');
+
+// Linking UI to functions -----------------------------------------
 
 const startButton = document.getElementById('startButton');
 startButton.addEventListener('click', start);
