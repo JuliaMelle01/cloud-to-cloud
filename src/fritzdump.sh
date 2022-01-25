@@ -46,6 +46,12 @@ if [[ $SID =~ ^0+$ ]] ; then echo "Login failed. Did you create & use explicit F
 echo "Capturing traffic on Fritz!Box interface $IFACE ..." 1>&2
 
 # In case you want to use tshark instead of ntopng
+# wget = holt daten von server
+# | weiterleiten zu tshark
+# weiterleiten zu python 
+# pcap start
+# stdin
+# - hier las file output = stdin??
 #wget --no-check-certificate -qO- $FRITZIP/cgi-bin/capture_notimeout?ifaceorminor=$IFACE\&snaplen=\&capture=Start\&sid=$SID | /usr/bin/tshark -r -
 
 wget --no-check-certificate -qO- $FRITZIP/cgi-bin/capture_notimeout?ifaceorminor=$IFACE\&snaplen=\&capture=Start\&sid=$SID | ntopng -i -
