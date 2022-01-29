@@ -6,6 +6,11 @@ name = "pypi"
 [packages]
 asyncio = "*"
 requests = "*"
+pypcapkit = "*"
+pyshark = "*"
+scapy = "*"
+dpkt = "*"
+pypcap = "*"
 
 [dev-packages]
 

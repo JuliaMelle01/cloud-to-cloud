@@ -53,5 +53,8 @@ echo "Capturing traffic on Fritz!Box interface $IFACE ..." 1>&2
 # stdin
 # - hier las file output = stdin??
 #wget --no-check-certificate -qO- $FRITZIP/cgi-bin/capture_notimeout?ifaceorminor=$IFACE\&snaplen=\&capture=Start\&sid=$SID | /usr/bin/tshark -r -
+#TMPFILE=$(mktemp /tmp/data_traffic.pcap)
 
-wget --no-check-certificate -qO- $FRITZIP/cgi-bin/capture_notimeout?ifaceorminor=$IFACE\&snaplen=\&capture=Start\&sid=$SID | ntopng -i -
+wget --no-check-certificate -qO- $FRITZIP/cgi-bin/capture_notimeout?ifaceorminor=$IFACE\&snaplen=\&capture=Start\&sid=$SID | sudo /home/julia/.local/share/virtualenvs/cloud-to-cloud-ZMS_dF9Z/bin/python -u src/manage.py -
+
+#rm "$TMPFILE"

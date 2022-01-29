@@ -26,3 +26,12 @@ class RESTConnection:
         bytes_download = json["bytes_download"]
         localtime = json["localtime"]
         return bytes
+
+
+class TrafficCapture:
+
+    def __init__(self):
+        self.data = 0
+
+    def update_data(self, bytes):
+        self.data += bytes
