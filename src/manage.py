@@ -1,9 +1,8 @@
 import asyncio
-import datetime
 from carbon_budget import CurrentCarbonBudget
 from fritzbox_api import TrafficCapture
 from calculator import Calculator
-import dpkt
+import json
 import fileinput
 import threading
 # Daily carbon budget per person
@@ -14,12 +13,8 @@ DAILY_CARBON_BUDGET = 0.205
 # CO2/kg
 CARBON_PER_GB = 0.18915
 
-#NTOPNG_USER = "admin"
-#NTOPNG_PASSWORD = "admin_julia"
-
 
 async def run_artefact(traffic_capture):
-    #loop = asyncio.get_running_loop()
     carbon_budget = CurrentCarbonBudget(DAILY_CARBON_BUDGET)
     print(f"Start budget: {carbon_budget.carbon_budget}")
     while True:
@@ -34,11 +29,11 @@ async def run_artefact(traffic_capture):
 
 
 def capture_data_traffic(traffic_capture):
-    for line in fileinput.input(mode='rb'):
+    for line in fileinput.input():
         try:
-            traffic_capture.update_data(len(dpkt.ethernet.Ethernet(line).data))
-        except dpkt.dpkt.NeedData:
-            print("Warning: ")
+            traffic_capture.update_data(json.loads(line))
+        except KeyError:
+            continue
 
 
 def between_callback(args):

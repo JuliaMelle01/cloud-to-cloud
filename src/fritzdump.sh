@@ -45,16 +45,5 @@ if [[ $SID =~ ^0+$ ]] ; then echo "Login failed. Did you create & use explicit F
 
 echo "Capturing traffic on Fritz!Box interface $IFACE ..." 1>&2
 
-# In case you want to use tshark instead of ntopng
-# wget = holt daten von server
-# | weiterleiten zu tshark
-# weiterleiten zu python 
-# pcap start
-# stdin
-# - hier las file output = stdin??
-#wget --no-check-certificate -qO- $FRITZIP/cgi-bin/capture_notimeout?ifaceorminor=$IFACE\&snaplen=\&capture=Start\&sid=$SID | /usr/bin/tshark -r -
-#TMPFILE=$(mktemp /tmp/data_traffic.pcap)
-
-wget --no-check-certificate -qO- $FRITZIP/cgi-bin/capture_notimeout?ifaceorminor=$IFACE\&snaplen=\&capture=Start\&sid=$SID | sudo /home/julia/.local/share/virtualenvs/cloud-to-cloud-ZMS_dF9Z/bin/python -u src/manage.py -
-
-#rm "$TMPFILE"
+# capture traffic
+wget --no-check-certificate -qO- $FRITZIP/cgi-bin/capture_notimeout?ifaceorminor=$IFACE\&snaplen=\&capture=Start\&sid=$SID | sudo /usr/bin/tshark -i - -T ek | /home/julia/.local/share/virtualenvs/cloud-to-cloud-ZMS_dF9Z/bin/python -u src/manage.py
