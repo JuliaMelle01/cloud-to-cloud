@@ -11,6 +11,9 @@ pyshark = "*"
 scapy = "*"
 dpkt = "*"
 pypcap = "*"
+playsound = "*"
+"rpi.gpio" = "*"
+numpy = "*"
 
 [dev-packages]
 

@@ -46,4 +46,4 @@ if [[ $SID =~ ^0+$ ]] ; then echo "Login failed. Did you create & use explicit F
 echo "Capturing traffic on Fritz!Box interface $IFACE ..." 1>&2
 
 # capture traffic
-wget --no-check-certificate -qO- $FRITZIP/cgi-bin/capture_notimeout?ifaceorminor=$IFACE\&snaplen=\&capture=Start\&sid=$SID | sudo /usr/bin/tshark -i - -T ek | /home/julia/.local/share/virtualenvs/cloud-to-cloud-ZMS_dF9Z/bin/python -u src/manage.py
+wget --no-check-certificate -qO- $FRITZIP/cgi-bin/capture_notimeout?ifaceorminor=$IFACE\&snaplen=\&capture=Start\&sid=$SID | sudo /usr/bin/tshark -i - -T ek | /home/julia/.local/share/virtualenvs/cloud-to-cloud-ZMS_dF9Z/bin/python -u src/main.py
