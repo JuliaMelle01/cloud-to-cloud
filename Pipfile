@@ -4,18 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-asyncio = "*"
-requests = "*"
-pypcapkit = "*"
-pyshark = "*"
-scapy = "*"
-dpkt = "*"
-pypcap = "*"
 playsound = "*"
 "rpi.gpio" = "*"
-numpy = "*"
+setuptools = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.8"
+python_version = "3.9"

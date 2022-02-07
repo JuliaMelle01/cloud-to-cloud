@@ -39,10 +39,12 @@ class RunArtefact:
 
     async def run_artefact(self):
         self.artefact.reset()
+        print("init")
         while True:
             # every minute
             await asyncio.sleep(60)
             self.hours_since_reset += 1
+            print(f"hours: {self.hours_since_reset}")
             if self.hours_since_reset == 24:
                 self.reset()
             else:
@@ -53,7 +55,8 @@ class RunArtefact:
         calculator = Calculator(used_data, CARBON_PER_GB, ANGLE_PER_CARBON)
         self.carbon_budget.update(calculator.used_carbon)
         self.artefact.update(calculator.degrees_to_turn)
-
+        print(f"budget: {self.carbon_budget.carbon_budget}")
+        
     def reset(self):
         self.hours_since_reset = 0
         self.carbon_budget.reset()
