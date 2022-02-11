@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "9c3ec2330baddf3426c0306e7b851b33120f00b7a6299c57581069f511208f0e"
+            "sha256": "df7c2e13a8be5f4a918789f90901be6733b2bfb0a087bb873f5368945bc27b3c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,12 +16,13 @@
         ]
     },
     "default": {
-        "playsound": {
+        "python-vlc": {
             "hashes": [
-                "sha256:cc6ed11d773034b0ef624e6bb4bf50f4b76b8414a59ce6d38afb89b423297ced"
+                "sha256:566f2f7c303f6800851cacc016df1c6eeec094ad63e0a49d87db9d698094f1fb",
+                "sha256:f88be06c6f819a4db2de1c586b193b5df1410ff10fca33b8c6f4e56037c46f7b"
             ],
             "index": "pypi",
-            "version": "==1.3.0"
+            "version": "==3.0.12118"
         },
         "rpi.gpio": {
             "hashes": [
@@ -36,14 +37,6 @@
             ],
             "index": "pypi",
             "version": "==0.7.1"
-        },
-        "setuptools": {
-            "hashes": [
-                "sha256:07e97e2f1e5607d240454e98c75c7004560ac8417ca5ae1dbaa50811cb6cc95c",
-                "sha256:23aad87cc27f4ae704079618c1d117a71bd43d41e355f0698c35f6b1c796d26c"
-            ],
-            "index": "pypi",
-            "version": "==60.8.1"
         }
     },
     "develop": {}

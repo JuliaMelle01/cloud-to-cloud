@@ -1,6 +1,7 @@
-import playsound
+#import playsound
 import RPi.GPIO as GPIO
 import math
+import vlc
 
 
 class Artefact:
@@ -48,7 +49,7 @@ class Artefact:
         # updates motor position (artefact shrinking)
         self.update_position(degrees_to_turn)
         # warning sound if just 10% of the budget left
-        if self.current_position <= 10 & self.not_warned_10_percent:
+        if self.current_position <= 380 & self.not_warned_10_percent:
             self.make_sound()
             self.not_warned_10_percent = False
         # warning sound  if budget us used up
@@ -91,4 +92,5 @@ class Artefact:
         """
         Plays a mp3 audio file via a speaker.
         """
-        playsound.playsound(self.audio_file)
+        p = vlc.MediaPlayer(self.audio_file)
+        p.play()

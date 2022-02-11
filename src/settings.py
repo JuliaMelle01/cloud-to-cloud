@@ -1,7 +1,7 @@
 import math
 
-# Path to played audio file
-PATH_TO_AUDIO = "audio.mp3"
+# Total (!) path to played audio file
+PATH_TO_AUDIO = "/home/pi/Documents/codingIxD/cloud-to-cloud/data/thriller.mp3"
 
 # Pin of raspberry pi for the motor
 GPIO_PIN_MOTOR = 19

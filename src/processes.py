@@ -30,6 +30,7 @@ class TrafficCapture:
         :param json_packet: A tshark packet JSON
         """
         bytes_sent = json_packet["layers"]["ip"]["ip_ip_len"]
+        print(f"bytes: {bytes_sent}")
         self.data += int(bytes_sent)
 
     def capture_data_traffic(self):
